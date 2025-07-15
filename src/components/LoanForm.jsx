@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Mail, Phone, DollarSign, Calendar, Briefcase } from 'lucide-react';
 
-const LoanForm = () => {
+const LoanForm = ({ addApplication }) => {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: '',
@@ -38,7 +38,7 @@ const LoanForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      // Optionally, send data to backend here
+      addApplication(form);
       navigate('/confirmation');
     }
   };

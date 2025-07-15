@@ -15,6 +15,10 @@
   .animate-bounce-slow {
     animation: bounce 2.5s infinite;
   }
+  .animate-section-highlight {
+    animation: sectionHighlight 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 0 0 #3b82f6, 0 0 40px 10px #3b82f6aa;
+  }
 }
 
 @keyframes fadeInUp {
@@ -25,5 +29,20 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes sectionHighlight {
+  0% {
+    background-color: #e0e7ff;
+    box-shadow: 0 0 0 0 #3b82f6, 0 0 40px 10px #3b82f6aa;
+  }
+  60% {
+    background-color: #f1f5f9;
+    box-shadow: 0 0 0 0 #3b82f6, 0 0 20px 5px #3b82f6aa;
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: none;
   }
 }

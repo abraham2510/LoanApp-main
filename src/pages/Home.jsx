@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle, Clock, Shield, DollarSign } from 'lucide-react';
 
 const Home = () => {
+  const featuresRef = useRef(null);
+  const [highlight, setHighlight] = useState(false);
+
+  const handleLearnMore = () => {
+    if (featuresRef.current) {
+      setHighlight(true);
+      featuresRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => setHighlight(false), 1200);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 font-sans">
       {/* Hero Section */}
@@ -24,14 +35,20 @@ const Home = () => {
               Apply Now
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
-            <button className="text-blue-700 hover:text-indigo-700 px-8 py-4 rounded-lg text-lg font-medium transition-colors">
+            <button
+              className="text-blue-700 hover:text-indigo-700 px-8 py-4 rounded-lg text-lg font-medium transition-colors"
+              onClick={handleLearnMore}
+            >
               Learn More
             </button>
           </div>
         </div>
       </div>
       {/* Features Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div
+        ref={featuresRef}
+        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 mt-12 scroll-mt-24 transition-all duration-700 ${highlight ? 'animate-section-highlight' : ''}`}
+      >
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Why Choose QuickLoan?
